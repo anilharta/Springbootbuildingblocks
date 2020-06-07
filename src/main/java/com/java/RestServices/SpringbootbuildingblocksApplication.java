@@ -9,5 +9,5 @@ public class SpringbootbuildingblocksApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootbuildingblocksApplication.class, args);
 	}
-
+ //
 }
