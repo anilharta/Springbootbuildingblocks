@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.java.RestServices.Pojos.Users;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, Long>{
-  
+public interface UserRepository extends JpaRepository<Users, Long> {
+
 	Users findByUserName(String username);
 }
