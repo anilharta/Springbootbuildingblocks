@@ -29,13 +29,13 @@ import com.java.RestServices.Services.UserService;
 
 @RestController
 @Validated
-@RequestMapping(value = "/usersr")
+@RequestMapping(value = "/AppUsers")
 public class UserController {
 
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/users")
+	@GetMapping("/allUsers")
 	public List<Users> getAllUsers() {
 		try {
 			return userService.getAllUsers();
@@ -44,7 +44,7 @@ public class UserController {
 		}
 	}
 
-	@PostMapping("/newuser")
+	@PostMapping("/CreateUser")
 	public ResponseEntity<Void> CreateNewUser(@Valid @RequestBody Users user, UriComponentsBuilder builder) {
 		try {
 			userService.createUser(user);
@@ -56,7 +56,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public Optional<Users> getUserById(@PathVariable("id") @Min(1) Long id) {
 		try {
 			return userService.getUserById(id);
@@ -83,7 +83,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("users/findusersbyname/{username}")
+	@GetMapping("findusersbyname/{username}")
 	public Users findUserByUserName(@PathVariable("username") String name) throws UserNameNotFoundException{
 		Users users = userService.findUserByUserName(name);
 		if(users == null)
