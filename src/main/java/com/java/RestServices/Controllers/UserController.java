@@ -49,7 +49,7 @@ public class UserController {
 		try {
 			userService.createUser(user);
 			HttpHeaders headers = new HttpHeaders();
-			headers.setLocation(builder.path("/newuser").buildAndExpand(user.getId()).toUri());
+			headers.setLocation(builder.path("/newuser").buildAndExpand(user.getUserid()).toUri());
 			return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 		} catch (UserNotFoundException ex) {
 			throw new ResponseStatusException(HttpStatus.FOUND, ex.getMessage());

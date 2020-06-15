@@ -49,7 +49,7 @@ public class UserService {
 		if (!optionaluser.isPresent()) {
 			throw new UserNotFoundException("User with id " + id + " is not availabe");
 		}
-		user.setId(id);
+		user.setUserid(id);;
 		return userRepository.save(user);
 	}
 

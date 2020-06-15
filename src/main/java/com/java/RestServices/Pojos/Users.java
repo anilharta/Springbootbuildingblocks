@@ -11,12 +11,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.RepresentationModel;
+
 @Entity
 @Table(name = "USERS")
-public class Users {
+public class Users extends RepresentationModel<Users> {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long userid;
 
 	@NotEmpty(message = "First Name can not be empty")
 	@Column(name = "Fist_NAME", nullable = false, length = 255, unique = true)
@@ -41,21 +43,24 @@ public class Users {
 	public Users() {
 	}
 
-	public Users(Long id, String firstName, String lastName, String userName, String address, String ssn) {
-		this.id = id;
+	public Users(Long userid, @NotEmpty(message = "First Name can not be empty") String firstName,
+			@Size(min = 2, message = "First Name can not be empty") String lastName, String userName, String address,
+			String ssn, List<Orders> orders) {
+		this.userid = userid;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.address = address;
 		this.ssn = ssn;
+		this.orders = orders;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getFirstName() {
@@ -108,8 +113,8 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
-				+ ", address=" + address + ", ssn=" + ssn + "]";
+		return "Users [userid=" + userid + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
+				+ userName + ", address=" + address + ", ssn=" + ssn + ", orders=" + orders + "]";
 	}
 
 }
